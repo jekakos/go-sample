@@ -1,0 +1,165 @@
+basePath: /
+definitions:
+  requests.CheckPaymentRequest:
+    properties:
+      token:
+        type: string
+    required:
+    - token
+    type: object
+  requests.CreatePaymentRequest:
+    properties:
+      amount:
+        type: integer
+      currency:
+        type: string
+      day:
+        type: integer
+      paymentProviderId:
+        type: integer
+      price:
+        type: number
+      region:
+        type: string
+      userEmail:
+        type: string
+      userUuid:
+        type: string
+      vendorId:
+        type: integer
+    required:
+    - amount
+    - currency
+    - day
+    - paymentProviderId
+    - price
+    - region
+    - userEmail
+    - userUuid
+    - vendorId
+    type: object
+  requests.GetPaymentRequest:
+    properties:
+      token:
+        type: string
+    type: object
+  responses.CheckPaymentResponse:
+    properties:
+      status:
+        type: string
+      token:
+        type: string
+    type: object
+  responses.CreatePaymentResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  responses.GetPaymentResponse:
+    properties:
+      amount:
+        type: integer
+      createdAt:
+        type: string
+      currency:
+        type: string
+      day:
+        type: integer
+      id:
+        type: string
+      paymentId:
+        type: string
+      paymentLink:
+        type: string
+      paymentProviderId:
+        type: integer
+      price:
+        type: number
+      region:
+        type: string
+      status:
+        type: string
+      userUuid:
+        type: string
+      vendorId:
+        type: integer
+    type: object
+host: localhost:3000
+info:
+  contact:
+    email: fiber@swagger.io
+    name: API
+  description: This is a LightSIM Payment API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: LightSIM Payment API
+  version: "1.0"
+paths:
+  /check_payment:
+    get:
+      consumes:
+      - application/json
+      description: Check payment status
+      parameters:
+      - description: CheckPayment request payload
+        in: body
+        name: check_payment
+        required: true
+        schema:
+          $ref: '#/definitions/requests.CheckPaymentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.CheckPaymentResponse'
+      summary: Check payment status
+      tags:
+      - root
+  /payment:
+    get:
+      consumes:
+      - application/json
+      description: Check payment status
+      parameters:
+      - description: GetPaymentRequest request payload
+        in: body
+        name: check_payment
+        required: true
+        schema:
+          $ref: '#/definitions/requests.GetPaymentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.GetPaymentResponse'
+      summary: Check payment status
+      tags:
+      - root
+    post:
+      consumes:
+      - application/json
+      description: Create new payment
+      parameters:
+      - description: CreatePayment request payload
+        in: body
+        name: payment
+        required: true
+        schema:
+          $ref: '#/definitions/requests.CreatePaymentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.CreatePaymentResponse'
+      summary: Create payment
+      tags:
+      - root
+swagger: "2.0"

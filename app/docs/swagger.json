@@ -1,0 +1,248 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a LightSIM Payment API",
+        "title": "LightSIM Payment API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API",
+            "email": "fiber@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+        "/check_payment": {
+            "get": {
+                "description": "Check payment status",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "root"
+                ],
+                "summary": "Check payment status",
+                "parameters": [
+                    {
+                        "description": "CheckPayment request payload",
+                        "name": "check_payment",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requests.CheckPaymentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.CheckPaymentResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/payment": {
+            "get": {
+                "description": "Check payment status",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "root"
+                ],
+                "summary": "Check payment status",
+                "parameters": [
+                    {
+                        "description": "GetPaymentRequest request payload",
+                        "name": "check_payment",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requests.GetPaymentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.GetPaymentResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new payment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "root"
+                ],
+                "summary": "Create payment",
+                "parameters": [
+                    {
+                        "description": "CreatePayment request payload",
+                        "name": "payment",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requests.CreatePaymentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.CreatePaymentResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "requests.CheckPaymentRequest": {
+            "type": "object",
+            "required": [
+                "token"
+            ],
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "requests.CreatePaymentRequest": {
+            "type": "object",
+            "required": [
+                "amount",
+                "currency",
+                "day",
+                "paymentProviderId",
+                "price",
+                "region",
+                "userEmail",
+                "userUuid",
+                "vendorId"
+            ],
+            "properties": {
+                "amount": {
+                    "type": "integer"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "day": {
+                    "type": "integer"
+                },
+                "paymentProviderId": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "userEmail": {
+                    "type": "string"
+                },
+                "userUuid": {
+                    "type": "string"
+                },
+                "vendorId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "requests.GetPaymentRequest": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "responses.CheckPaymentResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "responses.CreatePaymentResponse": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "responses.GetPaymentResponse": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "day": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "paymentId": {
+                    "type": "string"
+                },
+                "paymentLink": {
+                    "type": "string"
+                },
+                "paymentProviderId": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "userUuid": {
+                    "type": "string"
+                },
+                "vendorId": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
